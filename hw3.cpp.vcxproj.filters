@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hw3.cpp.cpp">
+    <ClCompile Include="textfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="textfile.cpp">
+    <ClCompile Include="hw3..cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
