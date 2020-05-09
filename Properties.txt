@@ -1,8 +1,9 @@
-Filename: JFMAbstract.txt
-Number of Characters: 338
-Number of Words: 45
+Filename: test1.txt
+Number of Characters: 45
+Number of Words: 9
 
-Filename: PhysicaDAbstract.txt
-Number of Characters: 221
-Number of Words: 28
+Filename: test2.txt
+Number of Characters: 44
+Number of Words: 9
 
+"test1.txt" has the same number of lines as "test2.txt".

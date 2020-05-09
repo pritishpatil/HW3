@@ -1,4 +1,8 @@
-
+/*
+    PIC 10B 2B, Homework 3
+    Author: Pritish Patil
+    Date: 05/09/2020
+*/
 
 #include <iostream>
 #include <fstream>
@@ -7,7 +11,7 @@
 using namespace std; 
 
 
-textfile* processFile(string fileName)
+void processFile(string fileName, textfile* filePtr)
 {
     fstream file;
     string line;
@@ -44,7 +48,6 @@ textfile* processFile(string fileName)
                         {
                             wordCount++;
                         }
-
                         spaceEncountered = true;
                     }
                     else
@@ -56,10 +59,16 @@ textfile* processFile(string fileName)
                 lineCount++;
             }
         }
+
+        // account for final word if there is not a space encountered at end of file
+        if (spaceEncountered == false)
+        {
+            wordCount++;
+        }
+
         file.close();
 
-        textfile* filePtr = new textfile(fileName, lineCount, wordCount, charCount);
-        return filePtr;
+        filePtr->setFileInfo(fileName, lineCount, wordCount, charCount);
     }
     else
     {
@@ -74,34 +83,54 @@ int main()
 
     string file1; string file2;
 
+    // user input 
     cout << "Enter the name of file 1: " << endl;
     cin >> file1;
     
     cout << "Enter the name of file 2: " << endl;
     cin >> file2;
    
+    // create textfile objects
+    textfile file1Object;
+    textfile file2Object;
   
-    textfile* File1Ptr = processFile(file1);
-    textfile* File2Ptr = processFile(file2);
+    // process files with helper
+    processFile(file1, &file1Object);
+    processFile(file2, &file2Object);
     
+    // output properties to text file  
     ofstream outputFile;
     outputFile.open("Properties.txt");
 
-    outputFile << "Filename: " << File1Ptr->getFilename() << endl;
-    outputFile << "Number of Characters: " << File1Ptr->getCharacters() << endl;
-    outputFile << "Number of Words: " << File1Ptr->getWordcount() << endl;
+    outputFile << "Filename: " << file1Object.getFilename() << endl;
+    outputFile << "Number of Characters: " << file1Object.getCharacters() << endl;
+    outputFile << "Number of Words: " << file1Object.getWordcount() << endl;
     outputFile << endl;
-    outputFile << "Filename: " << File2Ptr->getFilename() << endl;
-    outputFile << "Number of Characters: " << File2Ptr->getCharacters() << endl;
-    outputFile << "Number of Words: " << File2Ptr->getWordcount() << endl;
+    outputFile << "Filename: " << file2Object.getFilename() << endl;
+    outputFile << "Number of Characters: " << file2Object.getCharacters() << endl;
+    outputFile << "Number of Words: " << file2Object.getWordcount() << endl;
     outputFile << endl;
+
+    // compare lines via overloaded operators
+    bool compareGreater = file1Object > file2Object;
+    bool compareLess = file1Object < file2Object;
+    bool checkEqual = file1Object == file2Object;
+
+    // produce comparison result
+    if (compareGreater == true)
+    {
+        outputFile << "The file named " << "\"" << file2Object.getFilename() << "\"" << " has less lines than " << "\"" << file1Object.getFilename() << "\"." << endl;
+    }
+    else if (compareLess == true)
+    {
+        outputFile << "The file named " << "\"" << file1Object.getFilename() << "\"" << " has less lines than " << "\"" << file2Object.getFilename() << "\"." << endl;
+    }
+    else if (checkEqual == true)
+    {
+        outputFile << "\"" << file1Object.getFilename() << "\"" << " has the same number of lines as " << "\"" << file2Object.getFilename() << "\"." << endl;
+    }
 
     outputFile.close();
-
-    delete File1Ptr;
-    delete File2Ptr;
-   
-    
 
     return 0;
 }

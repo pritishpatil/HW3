@@ -29,6 +29,12 @@
     <Text Include="..\..\..\..\Downloads\PhysicaDAbstract.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="test1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="textfile.h">

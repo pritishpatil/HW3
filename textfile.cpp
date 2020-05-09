@@ -1,29 +1,25 @@
+/*
+	PIC 10B 2B, Homework 3
+	Author: Pritish Patil
+	Date: 05/09/2020
+*/
+
 #include "textfile.h"
 
-textfile::textfile(string newFilename, int newLineamount, int newWordcount, int newCharacters)
+textfile::textfile() 
+{
+	fileName = "";
+	lineAmount = 0;
+	wordCount = 0;
+	characters = 0;
+};
+
+void textfile::setFileInfo(string newFilename, int newLineamount, int newWordcount, int newCharacters)
 {
 	fileName = newFilename;
 	lineAmount = newLineamount;
 	wordCount = newWordcount;
 	characters = newCharacters;
-}
-
-bool textfile::equalityCheck(int a, int b)
-{
-	if (a == b)
-	{
-		return true;
-	}
-	return false;
-}
-
-bool textfile::compareLines(int x, int y)
-{
-	if (x > y)
-	{
-		return true;
-	}
-	return false;
 }
 
 string textfile::getFilename()
@@ -44,6 +40,22 @@ int textfile::getLineamount()
 int textfile::getWordcount()
 {
 	return wordCount;
+}
+
+// overloaded operators
+bool textfile::operator>(textfile& otherFile)
+{
+	return lineAmount > otherFile.getLineamount();
+}
+
+bool textfile::operator<(textfile& otherFile)
+{
+	return lineAmount < otherFile.getLineamount();
+}
+
+bool textfile::operator==(textfile& otherFile)
+{
+	return lineAmount == otherFile.getLineamount();
 }
 
 
