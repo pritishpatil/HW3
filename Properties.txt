@@ -1,0 +1,8 @@
+Filename: JFMAbstract.txt
+Number of Characters: 338
+Number of Words: 45
+
+Filename: PhysicaDAbstract.txt
+Number of Characters: 221
+Number of Words: 28
+
